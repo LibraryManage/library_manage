@@ -10,7 +10,8 @@ public class Book{
 	private String des;
 	private String book_path;
 	private String img_path;
-	
+	private String press;
+	private int state;
 	
 	
 	public int getId() {
@@ -49,10 +50,23 @@ public class Book{
 	public void setImg_path(String img_path) {
 		this.img_path = img_path;
 	}
+	
+	public String getPress() {
+		return press;
+	}
+	public void setPress(String press) {
+		this.press = press;
+	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", name=" + name + ", author=" + author + ", des=" + des + ", book_path=" + book_path
-				+ ", img_path=" + img_path + "]";
+				+ ", img_path=" + img_path + ", press=" + press + ", state=" + state + "]";
 	}
 	
 	

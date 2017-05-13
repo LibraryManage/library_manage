@@ -2,4 +2,5 @@
 
 <bean>  
     <interface id="library_manage.dao.UserDao" class="library_manage.daoImpl.UserDaoImpl"/>
+    <interface id="library_manage.dao.BookrDao" class="library_manage.daoImpl.BookDaoImpl"/>
 </bean>  
