@@ -16,10 +16,10 @@ public class testService{
 	@Test
 	public void addbooktest(){
 		Page page = new Page();
-		page.setPage(2);
+		page.setPage(1);
 		Book book = new Book();
-		book.setName("Î÷ÓÎ¼Ç");
-		bDao.getBookList(book, page);
+		
+		System.out.println(bDao.getBookList(book, page));
 		System.out.println(page);
 	}
 	@Test

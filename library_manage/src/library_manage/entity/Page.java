@@ -3,7 +3,16 @@ package library_manage.entity;
 public class Page{
 	private int page;     //当前页数
 	private int pageNum;  //页面总数
+	private int curruntNum; 
 	
+	public int getCurruntNum() {
+		return curruntNum;
+	}
+
+	public void setCurruntNum(int curruntNum) {
+		this.curruntNum = curruntNum;
+	}
+
 	public Page(){};
 	
 	public int getPage() {
@@ -24,8 +33,10 @@ public class Page{
 
 	@Override
 	public String toString() {
-		return "Page [page=" + page + ", pageNum=" + pageNum + "]";
+		return "Page [page=" + page + ", pageNum=" + pageNum + ", curruntNum=" + curruntNum + "]";
 	}
+
+	
 	
 	
 }

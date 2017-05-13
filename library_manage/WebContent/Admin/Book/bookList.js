@@ -1,4 +1,99 @@
+var page = 1;
+var num = 0;
+var currentNum = 0;
 $(document).ready(function()
-		{ 
-	
+{ 
+	showList(null,null)
+	showPage();
+})
+
+function showList(author,name){
+	var json={
+			"author":author,
+		    "name":name
+		}
+		$.getJSON("../../BOOK",{
+			"method":"selectBook",
+			"jsonStr":JSON.stringify(json),
+			"page":page
+		},function(data){
+			alert(data)
+			var json = data.data;
+			num = data.num;
+			$("#num").empty();
+			$("#num").append(num);
+			currentNum = data.currentNum;
+			$("#booklist").empty();
+			for(var i=0;i<json.length;i++){
+				$("#booklist").append(
+						'<tr class="text-c">'+
+						'<td><input type="checkbox" value="1" name=""></td>'+
+						'<td>'+json[i].id+'</td>'+
+						'<td class="hidden-xs"><u style="cursor:pointer" class="text-primary">'+json[i].name+'</u></td>'+
+						'<td>'+json[i].id+'</td>'+
+						'<td>'+json[i].author+'</td>'+
+						'<td>'+json[i].press+'</td>'+
+						'<td class="text-l">'+json[i].des+'</td>'+
+						'<td>'+json[i].img_path+'</td>'+
+						'<td class="td-status"><span class="label label-success radius">已启用</span></td>'+
+						'<td class="td-manage">'+
+						    '<a title="编辑" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> '+
+					'</tr>'
+             );
+			}
+			
+			
 		})
+}
+
+
+//page
+function showPage(){
+	
+	$.ajaxSetup({                    //设置同步
+	    async : false  
+	}); 
+	
+	var pageAll = 0;
+	var userPhone = $(".input-text").val();                //获取手机号码
+	
+	$.post("./user.jhtm", {
+		method : "getUserNumber",
+		userPhone:userPhone,
+	}, function(json) {
+		
+		document.getElementById("all_data").innerHTML = json;          //总数据
+		pageAll = Math.ceil(json/10);               //页数
+	});
+	
+	
+	layui.config({
+		base: './Admin/Mode/plugins/layui/modules/'
+	}); 
+
+	layui.use(['icheck', 'laypage','layer'], function() {
+		var $ = layui.jquery,
+			laypage = layui.laypage,
+			layer = parent.layer === undefined ? layui.layer : parent.layer;
+		$('input').iCheck({
+			checkboxClass: 'icheckbox_flat-green'
+	});
+
+	//page
+	laypage({
+		cont: 'page',
+		pages: num //总页数
+			,
+		groups: 5 //连续显示分页数
+			,
+		jump: function(obj, first) {
+			//得到了当前页，用于向服务端请求对应数据
+			var curr = obj.curr;
+			if(!first) {
+				shouUserList(curr)     //跳转
+			}
+		}
+	});
+	});
+}
+

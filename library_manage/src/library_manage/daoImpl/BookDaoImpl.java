@@ -51,8 +51,8 @@ public class BookDaoImpl implements BookDao{
 		}
 		sql +=" limit "+start+" ,"+ 10;
 		try {
+			page.setCurruntNum(runerQuery.query(sql, new BeanListHandler<Book>(Book.class)).size());
 			return runerQuery.query(sql, new BeanListHandler<Book>(Book.class));
-			
 		} catch (SQLException e) {
 			System.out.println("查询书籍数据异常！");
 			e.printStackTrace();
