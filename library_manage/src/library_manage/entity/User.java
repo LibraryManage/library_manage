@@ -93,7 +93,6 @@ public class User {
 				+ ", userNickname=" + userNickname + ", userSex=" + userSex + ", userPic=" + userPic + "]";
 	}
 	
-	
 }
 
 
