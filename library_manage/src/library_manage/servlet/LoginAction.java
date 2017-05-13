@@ -42,6 +42,7 @@ public class LoginAction extends HttpServlet {
 		
 		String userAccount = request.getParameter("account");
 		String userPassword = request.getParameter("password");
+		
 		User user = new User();
 		user.setUserAccount(userAccount);
 		user.setUserPassword(userPassword);
@@ -62,7 +63,7 @@ public class LoginAction extends HttpServlet {
 		if( userSession == null ){
 			session.setAttribute(Constants.USER_KEY, result);                   //将用户对象存进session
 		}
-		request.getRequestDispatcher("Admin/Index/index.jsp").forward(request, response);
+		request.getRequestDispatcher("Admin/Index/index.html").forward(request, response);
 		
 		
 	}

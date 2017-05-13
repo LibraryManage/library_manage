@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 	public User isExitUser(User user) {
 		
 		User result = null;
-		user = daoInstance.isExitUser(user);
+		result = daoInstance.isExitUser(user);
 		return result;
 	}
 }

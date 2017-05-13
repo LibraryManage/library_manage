@@ -18,13 +18,14 @@ public class UserDaoImpl implements UserDao {
 	public User isExitUser(User user) {
 		
 		User result = null;
-		String sql = "select userId,userNickName,userPic from user where userAccount = ? and userPassword = ? and userState = ?";
+		String sql = "select userId,userAccount from user where userAccount = ? and userPassword = ? and userState = ?";
 		Object[] param = {user.getUserAccount(),user.getUserPassword(),1};
 		try {
-			result =  runerQuery.query(sql, param, new BeanHandler<>(User.class));
+			result =  runerQuery.query(sql, new BeanHandler<>(User.class), param);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("result:"+result);
 		return result;
 	}
 
