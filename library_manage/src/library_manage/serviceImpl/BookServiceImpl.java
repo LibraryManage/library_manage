@@ -4,6 +4,7 @@ import java.util.List;
 
 import library_manage.dao.BookDao;
 import library_manage.entity.Book;
+import library_manage.entity.Page;
 import library_manage.factory.DaoFactory;
 import library_manage.service.BookService;
 
@@ -25,7 +26,7 @@ public class BookServiceImpl implements BookService{
 		return  daoInstance.addBook(book);
 	}
 	@Override
-	public List<Book> getBookList(Book book,int page){
+	public List<Book> getBookList(Book book,Page page){
 		
 		return daoInstance.getBookList(book, page);
 	}

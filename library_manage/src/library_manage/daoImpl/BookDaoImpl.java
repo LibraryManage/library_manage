@@ -9,6 +9,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import library_manage.dao.BookDao;
 import library_manage.entity.Book;
+import library_manage.entity.Page;
 import library_manage.tool.JdbcUtils_DBCP;
 
 public class BookDaoImpl implements BookDao{
@@ -32,15 +33,21 @@ public class BookDaoImpl implements BookDao{
 	}
 	//≤È—Ø¡–±Ì
 	@Override
-	public List<Book> getBookList(Book book,int page){
+	public List<Book> getBookList(Book book,Page page){
 		List<Book> books = null;
-		int start = (page-1)*10;
+		int start = (page.getPage()-1)*10;
 		String sql = "select * from book where 1=1";
 		if(book.getName()!= null){
 			sql +=" and name = '"+book.getName()+"' ";
 		}
 		if(book.getAuthor() != null){
 			sql += "and author = '"+book.getAuthor()+"'";
+		}
+		try {
+			page.setPageNum(runerQuery.query(sql, new BeanListHandler<Book>(Book.class)).size());
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		sql +=" limit "+start+" ,"+ 10;
 		try {

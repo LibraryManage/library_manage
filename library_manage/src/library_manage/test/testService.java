@@ -3,6 +3,7 @@ package library_manage.test;
 import org.junit.Test;
 
 import library_manage.entity.Book;
+import library_manage.entity.Page;
 import library_manage.service.BookService;
 import library_manage.service.UserService;
 import library_manage.serviceImpl.BookServiceImpl;
@@ -14,10 +15,12 @@ public class testService{
 	
 	@Test
 	public void addbooktest(){
-		
+		Page page = new Page();
+		page.setPage(2);
 		Book book = new Book();
-		
-		System.out.println(bDao.getBookList(book, 1));
+		book.setName("Î÷ÓÎ¼Ç");
+		bDao.getBookList(book, page);
+		System.out.println(page);
 	}
 	@Test
 	public void testdelete(){
