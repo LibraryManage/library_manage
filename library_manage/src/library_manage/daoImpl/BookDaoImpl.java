@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import library_manage.dao.BookDao;
 import library_manage.entity.Book;
@@ -19,7 +21,7 @@ public class BookDaoImpl implements BookDao{
 		String sql = "insert into book(name,author,des,book_path,img_path,press,state) value(?,?,?,?,?,?,?)";
 		Object[] param = {book.getName(),book.getAuthor(),book.getDes(),book.getBook_path(),book.getImg_path(),book.getPress(),book.getState()};
 		try {
-			int flag = runerUpdate.update(sql);
+			int flag = runerQuery.update(sql, param);
 			return flag;
 		} catch (SQLException e) {
 			System.out.println("新增书籍数据异常！");
@@ -32,17 +34,50 @@ public class BookDaoImpl implements BookDao{
 	@Override
 	public List<Book> getBookList(Book book,int page){
 		List<Book> books = null;
-		return books;
+		int start = (page-1)*10;
+		String sql = "select * from book where 1=1";
+		if(book.getName()!= null){
+			sql +=" and name = '"+book.getName()+"' ";
+		}
+		if(book.getAuthor() != null){
+			sql += "and author = '"+book.getAuthor()+"'";
+		}
+		sql +=" limit "+start+" ,"+ 10;
+		try {
+			return runerQuery.query(sql, new BeanListHandler<Book>(Book.class));
+			
+		} catch (SQLException e) {
+			System.out.println("查询书籍数据异常！");
+			e.printStackTrace();
+			return null;
+		}
 	}
 	//删除书籍
 	@Override
-	public int deleteBook(int id){
-		return 0;
+	public int deleteBook(String idStr){
+		String sql = "delete from book where id in("+idStr+")";
+		try {
+			return  runerQuery.update(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("删除书籍失败！");
+			return 0;
+		}
+	
 	}
 	//修改书籍
 	@Override
-	public int changeBook(int id){
-		return 0;
+	public int changeBook(Book book){
+		String sql = Book.updateSql(book);
+		try {
+			return runerQuery.update(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("书籍修改数据异常");
+			return 0;
+		}
 	}
 	
 	

@@ -1,12 +1,15 @@
 package library_manage.serviceImpl;
 
+import java.util.List;
+
 import library_manage.dao.BookDao;
+import library_manage.entity.Book;
 import library_manage.factory.DaoFactory;
 import library_manage.service.BookService;
 
 public class BookServiceImpl implements BookService{
 	
-	private static final BookServiceImpl instance = new BookServiceImpl();
+	private static BookServiceImpl instance = new BookServiceImpl();
     private BookDao daoInstance = null;                //数据访问层对象
 	
 	private BookServiceImpl(){
@@ -17,6 +20,21 @@ public class BookServiceImpl implements BookService{
 		
 		return instance;
 	}
-	
-	
+	@Override
+	public int addBook(Book book){
+		return  daoInstance.addBook(book);
+	}
+	@Override
+	public List<Book> getBookList(Book book,int page){
+		
+		return daoInstance.getBookList(book, page);
+	}
+	@Override
+	public int deleteBook(String idStr){
+		return daoInstance.deleteBook(idStr);
+	}
+	@Override
+	public int updateBook(Book book){
+		return daoInstance.changeBook(book);
+	}
 }

@@ -10,8 +10,8 @@ public interface BookDao {
 
 	List<Book> getBookList(Book book, int page);
 
-	int deleteBook(int id);
-
-	int changeBook(int id);
+	int deleteBook(String idStr);
+	
+	int changeBook(Book book);
 
 }

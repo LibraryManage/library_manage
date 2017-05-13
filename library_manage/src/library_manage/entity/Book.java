@@ -14,6 +14,17 @@ public class Book{
 	private int state;
 	
 	
+	public static String updateSql(Book book){
+		String sql = null;
+		sql="update book set name ="+book.getName()+","
+				+ "author = "+book.getAuthor()+","
+				+ "des = "+book.getDes()+","
+				+ "book_path ="+book.getBook_path()+","
+				+ "img_path ="+book.getImg_path()+","
+				+ "press ="+book.getPress()+","
+				+ "state ="+book.getName()+" where id = "+book.getId()+"";
+		return sql;
+	}
 	public int getId() {
 		return id;
 	}
