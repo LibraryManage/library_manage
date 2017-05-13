@@ -48,7 +48,7 @@
 //}
 
 navs = [{
-	"title": "管理员管理",
+	"title": "管理员管理1",
 	"icon": "fa-cubes",
 	"spread": false,
 	"children": [{
