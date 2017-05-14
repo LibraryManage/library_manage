@@ -4,6 +4,7 @@ import java.util.List;
 
 import library_manage.entity.Book;
 import library_manage.entity.Page;
+import library_manage.entity.Type;
 
 public interface BookDao {
     
@@ -14,5 +15,7 @@ public interface BookDao {
 	int changeBook(Book book);
 
 	List<Book> getBookList(Book book, Page page);
+
+	List<Type> getType();
 
 }

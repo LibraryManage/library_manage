@@ -14,6 +14,7 @@ import com.google.gson.JsonParser;
 
 import library_manage.entity.Book;
 import library_manage.entity.Page;
+import library_manage.entity.Type;
 import library_manage.service.BookService;
 import library_manage.serviceImpl.BookServiceImpl;
 @WebServlet("/BOOK")
@@ -100,4 +101,19 @@ public class BookServlet extends BaseServlet{
 	   
 	   
    } 
+   public void getType(HttpServletRequest request,HttpServletResponse response){
+	   Gson gson = new Gson();
+	   JsonObject json = new JsonObject();
+       List<Type> types = bService.getType();
+       json.add("data", new JsonParser().parse(gson.toJson(types)).getAsJsonArray());
+       try {
+		PrintWriter out = response.getWriter();
+		out.println(json);
+		out.close();
+		out.flush();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+   }
 }

@@ -10,6 +10,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import library_manage.dao.BookDao;
 import library_manage.entity.Book;
 import library_manage.entity.Page;
+import library_manage.entity.Type;
 import library_manage.tool.JdbcUtils_DBCP;
 
 public class BookDaoImpl implements BookDao{
@@ -87,6 +88,16 @@ public class BookDaoImpl implements BookDao{
 			return 0;
 		}
 	}
-	
+	@Override
+	public List<Type> getType(){
+		String sql ="select * from type";
+		try {
+			return runerQuery.query(sql, new BeanListHandler<Type>(Type.class));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 }

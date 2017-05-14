@@ -12,6 +12,7 @@ public class Book{
 	private String img_path;
 	private String press;
 	private int state;
+	private int typeId;
 	
 	
 	public static String updateSql(Book book){
@@ -22,9 +23,22 @@ public class Book{
 				+ "book_path ="+book.getBook_path()+","
 				+ "img_path ="+book.getImg_path()+","
 				+ "press ="+book.getPress()+","
+				+ "typeId ="+book.getTypeId()+","
 				+ "state ="+book.getName()+" where id = "+book.getId()+"";
 		return sql;
 	}
+	
+	
+	
+
+	public int getTypeId() {
+		return typeId;
+	}
+
+	public void setTypeId(int typeId) {
+		this.typeId = typeId;
+	}
+
 	public int getId() {
 		return id;
 	}

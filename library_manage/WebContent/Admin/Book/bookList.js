@@ -7,6 +7,7 @@ $(document).ready(function()
 { 
 	showList(null,null)
 	showPage();
+	getType()
 })
 
 function showListbycondition(){
@@ -141,4 +142,31 @@ function deleteAll(){
 	},function(data){
 		alert(Number(data.data))
 	})
+}
+
+function getType(){
+	$.getJSON("../../BOOK",{
+		"method":"getType",
+	},function(data){
+		var json = data.data;
+		$("#booktype").empty();
+		for(var i=0;i<json.length;i++){
+			
+			$("#booktype").append(
+                      '<option value="'+json[i].id+'">'+json[i].name+'</option>')
+		}
+	})
+}
+
+function createBook(){
+	var json = {
+			"bookname":$("#bookname").value(),
+			"booktype":$("#booktype").value(),
+			"author":$("#author").value(),
+			"press":$("#press").value(),
+			"des":$("#des").value(),
+			"bookPath":$("#book_path").value(),
+			"imgPath":$("#img_path").value(),
+	}
+	alert(JSON.stringify(json))
 }
