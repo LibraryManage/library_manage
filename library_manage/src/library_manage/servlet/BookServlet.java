@@ -2,6 +2,7 @@ package library_manage.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
@@ -22,9 +23,8 @@ public class BookServlet extends BaseServlet{
 	
 	private static BookService bService = BookServiceImpl.getInstance();
 	
-	public void CreateBook(HttpServletRequest request,HttpServletResponse response){
-		String jsonStr = request.getParameter("jsonStr");
-		 System.out.println(jsonStr);
+	public void CreateBook(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		String jsonStr = new String(request.getParameter("jsonStr").getBytes("iso-8859-1"), "utf-8");  		System.out.println("sssssssss"+jsonStr.toString());
 		Gson gson = new Gson();
 		Book book = gson.fromJson(jsonStr, Book.class);
 		int flag = bService.addBook(book);
@@ -60,9 +60,11 @@ public class BookServlet extends BaseServlet{
 		
 	}
 	
-	public void selectBook(HttpServletRequest request,HttpServletResponse response){
+	public void selectBook(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		
-		String jsonStr = request.getParameter("jsonStr");
+		
+		String jsonStr = new String(request.getParameter("jsonStr").getBytes("iso-8859-1"), "utf-8");  
+		System.out.println(jsonStr);
 		Gson gson = new Gson();
 		Page page = new Page();
 		page.setPage(Integer.parseInt(request.getParameter("page")));

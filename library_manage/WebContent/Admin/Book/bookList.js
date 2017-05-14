@@ -47,7 +47,7 @@ function showList(name,author){
 						'<td><input type="checkbox" value="'+json[i].id+'" name="BookId"></td>'+
 						'<td>'+json[i].id+'</td>'+
 						'<td class="hidden-xs"><u style="cursor:pointer" class="text-primary">'+json[i].name+'</u></td>'+
-						'<td>'+json[i].type+'</td>'+
+						'<td>'+json[i].typeId+'</td>'+
 						'<td>'+json[i].author+'</td>'+
 						'<td>'+json[i].press+'</td>'+
 						'<td class="text-l">'+json[i].des+'</td>'+

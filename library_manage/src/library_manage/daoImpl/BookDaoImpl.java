@@ -51,6 +51,7 @@ public class BookDaoImpl implements BookDao{
 			e1.printStackTrace();
 		}
 		sql +=" limit "+start+" ,"+ 10;
+		System.out.println(sql);
 		
 		try {
 			page.setCurruntNum(runerQuery.query(sql, new BeanListHandler<Book>(Book.class)).size());
