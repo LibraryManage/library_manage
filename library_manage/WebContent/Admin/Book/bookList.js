@@ -47,7 +47,7 @@ function showList(author,name){
 						'<td>'+json[i].img_path+'</td>'+
 						'<td class="td-status"><span class="'+spanColor+'">'+state+'</span></td>'+
 						'<td class="td-manage">'+
-						    '<a title="编辑" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> '+
+						'<a title="编辑" class="ml-5" style="text-decoration:none" onclick="a()"><i class="Hui-iconfont">&#xe6df;</i></a></td> '+
 					'</tr>'
              );
 			}
@@ -56,6 +56,9 @@ function showList(author,name){
 		})
 }
 
+function a(){
+	member_edit("编辑框","edit.html",800,1000)
+}
 
 //page
 function showPage(){
