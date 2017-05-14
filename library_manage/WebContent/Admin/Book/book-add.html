@@ -1,0 +1,121 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<LINK rel="Bookmark" href="/favicon.ico" >
+<LINK rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="../../Admin/Mode/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="../../Admin/Mode/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="../../Admin/Mode/lib/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="../../Admin/Mode/lib/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="../../Admin/Mode/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="../../Admin/Mode/static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" href="../../Admin/Mode/plugins/layui/css/layui.css" media="all" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!--/meta 作为公共模版分离出去-->
+
+
+<title>新增图书</title>
+<link href="../../Admin/Mode/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="page-container" >
+	<form class="layui-form">
+		<div class="layui-form-item">
+			<label class="layui-form-label"><span style="color:red;font-size: 20px">*</span>图书名称</label>
+			<div class="layui-input-block">
+				<input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入图书名称" class="layui-input" id="bookname">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label"><span style="color:red;font-size: 20px">*</span>图书类别</label>
+			<div class="layui-input-block">
+				<input type="text" name="class" lay-verify="required" autocomplete="off" placeholder="请输入图书类别" class="layui-input" id="class">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label"><span style="color:red;font-size: 20px">*</span>图书作者</label>
+			<div class="layui-input-block">
+				<input type="text" name="author" lay-verify="required" autocomplete="off" placeholder="请输入图书作者" class="layui-input" id="author">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label"><span style="color:red;font-size: 20px">*</span>出版社</label>
+			<div class="layui-input-block">
+				<input type="text" name="press" lay-verify="required" autocomplete="off" placeholder="请输入出版社" class="layui-input" id="press">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label"><span style="color:red;font-size: 20px">*</span>简介</label>
+			<div class="layui-input-block">
+				<input type="text" name="des" lay-verify="required" autocomplete="off" placeholder="请输入图书简介" class="layui-input" id="des">
+			</div>
+		</div>
+		<!-- 上传封面（开始） -->
+		
+  <div class="layui-form-item"  style="margin-bottom:0px"><p>
+  	  <label class="layui-form-label">封面上传：</label>	 
+	  	<img id="loading" src="../Image/loading.gif" style="display:none;">
+	   <div class="layui-input-block">
+	 <form name="form_uploadImg" action="" method="POST" enctype="multipart/form-data"> 
+	 	 <input id="uploadFileInput" type="file" size="45" name="uploadFileInput" class="input" /> 
+		 <input type="button" id="buttonUpload" onclick="return ajaxFileUploaduser('%{#status.index}');" value="上传封面"/>
+	 </form>
+	  </div>
+  </div>
+   
+   <!-- 上传封面（结束） -->
+   
+   <!-- 上传图书（开始） -->
+	<div class="layui-form-item"  style="margin-bottom:0px"><p>
+  	  <label class="layui-form-label">图书上传：</label>	 
+	  	<img id="loading" src="../Image/loading.gif" style="display:none;">
+	   <div class="layui-input-block">
+	 <form name="form_uploadImg" action="" method="POST" enctype="multipart/form-data"> 
+	 	 <input id="uploadFileInput" type="file" size="45" name="uploadFileInput" class="input" /> 
+		 <input type="button" id="buttonUpload" onclick="return ajaxFileUploaduser('%{#status.index}');" value="上传图书"/>
+	 </form>
+	  </div>
+  </div>
+<!--   上传图书（结束） -->	
+	<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+				<!-- <button class="layui-btn" lay-submit="" onclick="createRoute()">立即提交</button> -->
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="../../Admin/Mode/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../../Admin/Mode/lib/layer/2.1/layer.js"></script> 
+<script type="text/javascript" src="../../Admin/Mode/plugins/layui/layui.js"></script>
+<script type="text/javascript" src="../../Common/js/ajaxfileupload.js"></script>
+<!-- <script type="text/javascript" src="../../Admin/Mode/plugins/layui/lay/modules/form.js"></script> -->
+<script type="text/javascript" src="../../Admin/Mode/lib/icheck/jquery.icheck.min.js"></script> 
+<script type="text/javascript" src="../../Admin/Mode/lib/jquery.validation/1.14.0/jquery.validate.min.js"></script> 
+<script type="text/javascript" src="../../Admin/Mode/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="../../Admin/Mode/lib/jquery.validation/1.14.0/messages_zh.min.js"></script> 
+<script type="text/javascript" src="../../Admin/Mode/static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="../../Admin/Mode/static/h-ui.admin/js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="route-add.js"></script> 
+
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+</body>
+</html>
