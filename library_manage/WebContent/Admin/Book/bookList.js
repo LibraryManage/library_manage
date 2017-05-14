@@ -47,7 +47,7 @@ function showList(name,author){
 						'<td><input type="checkbox" value="'+json[i].id+'" name="BookId"></td>'+
 						'<td>'+json[i].id+'</td>'+
 						'<td class="hidden-xs"><u style="cursor:pointer" class="text-primary">'+json[i].name+'</u></td>'+
-						'<td>'+json[i].id+'</td>'+
+						'<td>'+json[i].type+'</td>'+
 						'<td>'+json[i].author+'</td>'+
 						'<td>'+json[i].press+'</td>'+
 						'<td class="text-l">'+json[i].des+'</td>'+
@@ -160,13 +160,29 @@ function getType(){
 
 function createBook(){
 	var json = {
-			"bookname":$("#bookname").value(),
-			"booktype":$("#booktype").value(),
-			"author":$("#author").value(),
-			"press":$("#press").value(),
-			"des":$("#des").value(),
-			"bookPath":$("#book_path").value(),
-			"imgPath":$("#img_path").value(),
+			"name":$("#bookname").val(),
+			"typeId":$("#booktype").val(),
+			"author":$("#author").val(),
+			"press":$("#press").val(),
+			"des":$("#des").val(),
+			"book_path":$("#book_path").val(),
+			"img_path":$("#img_path").val(),
+			"state":1
 	}
-	alert(JSON.stringify(json))
+	$.getJSON("../../BOOK",{
+		"method":"CreateBook",
+		"jsonStr":JSON.stringify(json)		
+	},function(data){
+		alert(1)
+	})
+	
+}
+function reset(){
+	$("#bookname").val("");
+	$("#booktype").val("");
+	$("#author").val("");
+	$("#press").val("");
+	$("#des").val("");
+	$("#book_path").val("");
+	$("#img_path").val("");
 }

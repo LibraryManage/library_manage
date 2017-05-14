@@ -20,8 +20,8 @@ public class BookDaoImpl implements BookDao{
 	//Ôö¼Ó
 	@Override
 	public int addBook(Book book){
-		String sql = "insert into book(name,author,des,book_path,img_path,press,state) value(?,?,?,?,?,?,?)";
-		Object[] param = {book.getName(),book.getAuthor(),book.getDes(),book.getBook_path(),book.getImg_path(),book.getPress(),book.getState()};
+		String sql = "insert into book(name,author,des,book_path,img_path,press,state,typeId) value(?,?,?,?,?,?,?,?)";
+		Object[] param = {book.getName(),book.getAuthor(),book.getDes(),book.getBook_path(),book.getImg_path(),book.getPress(),book.getState(),book.getTypeId()};
 		try {
 			int flag = runerQuery.update(sql, param);
 			return flag;

@@ -24,9 +24,11 @@ public class BookServlet extends BaseServlet{
 	
 	public void CreateBook(HttpServletRequest request,HttpServletResponse response){
 		String jsonStr = request.getParameter("jsonStr");
+		 System.out.println(jsonStr);
 		Gson gson = new Gson();
 		Book book = gson.fromJson(jsonStr, Book.class);
 		int flag = bService.addBook(book);
+	    System.out.println(flag);
 		JsonObject json = new JsonObject();
 		try {
 			PrintWriter out = response.getWriter();
