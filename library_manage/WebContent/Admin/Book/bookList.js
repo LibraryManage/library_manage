@@ -14,6 +14,7 @@ function showListbycondition(){
 	author = $('#author').val();
 	showList(name,author);
 }
+
 function showList(name,author){
 	var json={
 			"author":author,
@@ -41,12 +42,13 @@ function showList(name,author){
 					state = "已启用";
 					spanColor = "label label-success radius";
 				}
+            
 			$("#booklist").append(
 						'<tr class="text-c">'+
 						'<td><input type="checkbox" value="'+json[i].id+'" name="BookId"></td>'+
 						'<td>'+json[i].id+'</td>'+
 						'<td class="hidden-xs"><u style="cursor:pointer" class="text-primary">'+json[i].name+'</u></td>'+
-						'<td>'+json[i].id+'</td>'+
+						'<td>'+json[i].author+'</td>'+
 						'<td>'+json[i].author+'</td>'+
 						'<td>'+json[i].press+'</td>'+
 						'<td class="text-l">'+json[i].des+'</td>'+
@@ -61,7 +63,6 @@ function showList(name,author){
 			
 		})
 }
-
 
 //page
 function showPage(){
