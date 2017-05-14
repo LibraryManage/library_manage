@@ -27,6 +27,13 @@ public class testService{
 		String id = "1,2";
 		System.out.println(bDao.deleteBook(id));
 	}
-	
+	@Test
+	public void sd(){
+		Book book = new Book();
+		book.setName("Î÷ÓÎ¼Ç");
+		Page page = new Page();
+		page.setPage(1);
+		System.out.println(bDao.getBookList(book, page));
+	}
 	
 }

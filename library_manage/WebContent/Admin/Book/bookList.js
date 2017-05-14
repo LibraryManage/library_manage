@@ -8,6 +8,7 @@ $(document).ready(function()
 })
 
 function showList(author,name){
+	
 	var json={
 			"author":author,
 		    "name":name
@@ -17,17 +18,26 @@ function showList(author,name){
 			"jsonStr":JSON.stringify(json),
 			"page":page
 		},function(data){
-			alert(data)
 			var json = data.data;
+			var spanColor = "";
+			var state = "";
 			num = data.num;
 			$("#num").empty();
 			$("#num").append(num);
-			currentNum = data.currentNum;
+			
 			$("#booklist").empty();
 			for(var i=0;i<json.length;i++){
-				$("#booklist").append(
+                 if( json[i].state == 0){
+                    state = "已删除";
+					spanColor = "label label-danger radius";
+				}else if( json[i].state == 1 ){
+					
+					state = "已启用";
+					spanColor = "label label-success radius";
+				}
+			$("#booklist").append(
 						'<tr class="text-c">'+
-						'<td><input type="checkbox" value="1" name=""></td>'+
+						'<td><input type="checkbox" value="'+json[i].id+'" name="BookId"></td>'+
 						'<td>'+json[i].id+'</td>'+
 						'<td class="hidden-xs"><u style="cursor:pointer" class="text-primary">'+json[i].name+'</u></td>'+
 						'<td>'+json[i].id+'</td>'+
@@ -35,7 +45,7 @@ function showList(author,name){
 						'<td>'+json[i].press+'</td>'+
 						'<td class="text-l">'+json[i].des+'</td>'+
 						'<td>'+json[i].img_path+'</td>'+
-						'<td class="td-status"><span class="label label-success radius">已启用</span></td>'+
+						'<td class="td-status"><span class="'+spanColor+'">'+state+'</span></td>'+
 						'<td class="td-manage">'+
 						    '<a title="编辑" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> '+
 					'</tr>'
@@ -64,11 +74,12 @@ function showPage(){
 		
 		document.getElementById("all_data").innerHTML = json;          //总数据
 		pageAll = Math.ceil(json/10);               //页数
+		alert(pageAll)
 	});
 	
 	
 	layui.config({
-		base: './Admin/Mode/plugins/layui/modules/'
+		base: '../Mode/plugins/layui/modules/'
 	}); 
 
 	layui.use(['icheck', 'laypage','layer'], function() {
@@ -79,21 +90,46 @@ function showPage(){
 			checkboxClass: 'icheckbox_flat-green'
 	});
 
+	pageAll = Math.ceil(num/10);               //页数
 	//page
 	laypage({
 		cont: 'page',
-		pages: num //总页数
+		pages: pageAll //总页数
 			,
 		groups: 5 //连续显示分页数
 			,
 		jump: function(obj, first) {
 			//得到了当前页，用于向服务端请求对应数据
 			var curr = obj.curr;
+			page = curr;
 			if(!first) {
-				shouUserList(curr)     //跳转
+				showList(null,null)     //跳转
 			}
 		}
 	});
 	});
 }
 
+
+function deleteAll(){
+	var IdAll = document.getElementsByName('BookId');
+	var IdStr = null;
+	var n=0;
+	for(var k=0;k<IdAll.length;k++){
+		if(IdAll[k].checked){
+			if(n == 0){
+				IdStr = IdAll[k].value;
+			}else{
+				IdStr += ','+IdAll[k].value;
+				}
+			n++			 
+		} 
+			
+     }
+	$.getJSON("../../BOOK",{
+		"method":"deleteBook",
+		"idStr":IdStr
+	},function(data){
+		alert(Number(data.data))
+	})
+}

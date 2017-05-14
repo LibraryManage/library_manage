@@ -38,10 +38,10 @@ public class BookDaoImpl implements BookDao{
 		int start = (page.getPage()-1)*10;
 		String sql = "select * from book where 1=1";
 		if(book.getName()!= null){
-			sql +=" and name = '"+book.getName()+"' ";
+			sql +=" and name like '%"+book.getName()+"%'";
 		}
 		if(book.getAuthor() != null){
-			sql += "and author = '"+book.getAuthor()+"'";
+			sql += " and author like '%"+book.getAuthor()+"%'";
 		}
 		try {
 			page.setPageNum(runerQuery.query(sql, new BeanListHandler<Book>(Book.class)).size());
@@ -50,6 +50,7 @@ public class BookDaoImpl implements BookDao{
 			e1.printStackTrace();
 		}
 		sql +=" limit "+start+" ,"+ 10;
+		
 		try {
 			page.setCurruntNum(runerQuery.query(sql, new BeanListHandler<Book>(Book.class)).size());
 			return runerQuery.query(sql, new BeanListHandler<Book>(Book.class));
