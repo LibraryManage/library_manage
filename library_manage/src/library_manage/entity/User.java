@@ -92,7 +92,6 @@ public class User {
 				+ ", userEmail=" + userEmail + ", userPhone=" + userPhone + ", userState=" + userState
 				+ ", userNickname=" + userNickname + ", userSex=" + userSex + ", userPic=" + userPic + "]";
 	}
-	
 }
 
 
