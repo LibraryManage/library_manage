@@ -15,6 +15,7 @@ function showListbycondition(){
 	author = $('#author').val();
 	showList(name,author);
 }
+
 function showList(name,author){
 	var json={
 			"author":author,
@@ -42,6 +43,7 @@ function showList(name,author){
 					state = "已启用";
 					spanColor = "label label-success radius";
 				}
+            
 			$("#booklist").append(
 						'<tr class="text-c">'+
 						'<td><input type="checkbox" value="'+json[i].id+'" name="BookId"></td>'+
@@ -63,9 +65,12 @@ function showList(name,author){
 		})
 }
 
+
 function a(){
 	member_edit("编辑框","edit.html",800,1000)
 }
+
+
 
 //page
 function showPage(){
