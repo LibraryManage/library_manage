@@ -1,5 +1,7 @@
 var page = 1;
 var num = 0;
+var name = null;
+var author = null;
 var currentNum = 0;
 $(document).ready(function()
 { 
@@ -7,8 +9,12 @@ $(document).ready(function()
 	showPage();
 })
 
-function showList(author,name){
-	
+function showListbycondition(){
+	name = $('#name').val();
+	author = $('#author').val();
+	showList(name,author);
+}
+function showList(name,author){
 	var json={
 			"author":author,
 		    "name":name
